@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addEventListener</title>
+</head>
+<body>
+
+  <select id='colors' name='colors'>
+  </select>  
+  <input type='reset' id="resetBtn" value="Reset">
+    <br>
+  <div id='colorsList'>
+  </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js">
+</script>
+
+<script>
+  function loadColors(url, parent) {
+    $.getJSON(url,function(data){
+        $.each(data,function(key, entry){
+            parent.append($('<option></option>').attr('value',entry.ID).text(entry.color))
+        })
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', event => {
+    let dropdown = $("#colors");
+    dropdown.empty();
+
+    function defaultSelect(){
+    dropdown.append('<option selected="true" >Please Select a Color</option>');
+    dropdown.prop('selectedIndex', 0);
+    }
+    defaultSelect();
+    const url = 'json/colors.json';
+    loadColors(url, dropdown);    
+    
+    $('#resetBtn').on("click", function(){
+        dropdown.empty();
+        $("#colorsList").empty();
+        loadColors(url, dropdown);
+        defaultSelect();
+    });
+
+    $("#colors").on("change", function() {
+    $("select option:selected" ).each(function() {
+            var colorName = $(this).text()
+            var listItem = `<li>${colorName}</li>`
+            $("#colorsList").append(listItem);
+            $(this).remove();
+        });
+    });
+
+    });
+
+    
+</script>
+</html> 

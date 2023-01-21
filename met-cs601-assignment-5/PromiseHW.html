@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Promises</title>
+    <style>
+        .circle {
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          background-color: brown;
+          color: white;
+          line-height: 150px; /* link: https://stackoverflow.com/questions/2939914/how-do-i-vertically-align-text-in-a-div */
+          margin: auto;
+          text-align: center;
+        }
+    </style>
+  </head>
+  <body>
+      <header>
+        <div title="first"></div>
+        <div title="second"></div>
+        <div title="third"></div>
+      </header>
+      <button>Click Me</button>
+
+      <script>
+
+          async function MyFetch(url, targetSelector){
+            const config = {
+              method: "get", 
+              mode: "cors", 
+              cache: "no-cache"
+            };
+            let response = await fetch(url,config);
+            let json = await response.json();
+            document.querySelector(targetSelector).innerHTML = `<div class="circle">${json}</div>`;
+          }
+            MyFetch() 
+            .catch(err => {
+                  console.log(`There was an error: ${err}`);
+              });
+
+
+          window.addEventListener("DOMContentLoaded", event => {
+            document.querySelector("button").addEventListener("click", event => {
+              // hide the button.   Reload the page to get it back.
+              event.target.style.display = "none";
+
+              MyFetch("http://www.zumatra.com/teach/promise_2.php", "[title='first']");
+              MyFetch("http://www.zumatra.com/teach/promise_5.php", "[title='second']");
+              MyFetch("http://www.zumatra.com/teach/promise_10.php", "header div + div + div");
+            });
+          });
+      </script>
+  </body>
+</html>
