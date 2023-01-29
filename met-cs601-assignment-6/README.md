@@ -1,0 +1,3 @@
+# CS601 Assignment 6
+
+For my assignment 6, I have created the folder "addEventListenerHW". In that folder I have created the html file addEventListener.html. This html file contains a dropdown, where the user can select a color, of their choice, and then the color gets added into a list below the dropdown. The user can also select the "Reset" button, which resets the list of selected colors. The color get seleceted using jQuery and json objects, contained in the file "colors.json".

@@ -1,0 +1,3 @@
+# CS601 Assignment 5 Tomas Hornicek
+
+For my assignment 5, I have created the file "PromiseHW.html". In this html file I have embedded a JS file, that contains a promise, which is fullfilled once the user clicks the "click me" button. The promise fetches the following php files; "http://www.zumatra.com/teach/promise_2.php", "http://www.zumatra.com/teach/promise_5.php" and "http://www.zumatra.com/teach/promise_10.php". 
